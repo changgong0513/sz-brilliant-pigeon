@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.szbp.member.mapper.MemberPigeonInfoMapper">
+    
+    <resultMap type="MemberPigeonInfo" id="MemberPigeonInfoResult">
+        <result property="id"    column="id"    />
+        <result property="memberId"    column="member_id"    />
+        <result property="memberName"    column="member_name"    />
+        <result property="toeRing"    column="toe_ring"    />
+        <result property="featherColor"    column="feather_color"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectMemberPigeonInfoVo">
+        select id, member_id, member_name, toe_ring, feather_color, create_time, update_time from member_pigeon_info
+    </sql>
+
+    <select id="selectMemberPigeonInfoList" parameterType="MemberPigeonInfo" resultMap="MemberPigeonInfoResult">
+        <include refid="selectMemberPigeonInfoVo"/>
+        <where>  
+            <if test="memberId != null  and memberId != ''"> and member_id = #{memberId}</if>
+            <if test="memberName != null  and memberName != ''"> and member_name like concat('%', #{memberName}, '%')</if>
+            <if test="toeRing != null  and toeRing != ''"> and toe_ring = #{toeRing}</if>
+            <if test="featherColor != null  and featherColor != ''"> and feather_color = #{featherColor}</if>
+        </where>
+    </select>
+    
+    <select id="selectMemberPigeonInfoById" parameterType="Long" resultMap="MemberPigeonInfoResult">
+        <include refid="selectMemberPigeonInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertMemberPigeonInfo" parameterType="MemberPigeonInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into member_pigeon_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="memberId != null and memberId != ''">member_id,</if>
+            <if test="memberName != null and memberName != ''">member_name,</if>
+            <if test="toeRing != null and toeRing != ''">toe_ring,</if>
+            <if test="featherColor != null and featherColor != ''">feather_color,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="memberId != null and memberId != ''">#{memberId},</if>
+            <if test="memberName != null and memberName != ''">#{memberName},</if>
+            <if test="toeRing != null and toeRing != ''">#{toeRing},</if>
+            <if test="featherColor != null and featherColor != ''">#{featherColor},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMemberPigeonInfo" parameterType="MemberPigeonInfo">
+        update member_pigeon_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="memberId != null and memberId != ''">member_id = #{memberId},</if>
+            <if test="memberName != null and memberName != ''">member_name = #{memberName},</if>
+            <if test="toeRing != null and toeRing != ''">toe_ring = #{toeRing},</if>
+            <if test="featherColor != null and featherColor != ''">feather_color = #{featherColor},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMemberPigeonInfoById" parameterType="Long">
+        delete from member_pigeon_info where id = #{id}
+    </delete>
+
+    <delete id="deleteMemberPigeonInfoByIds" parameterType="String">
+        delete from member_pigeon_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
