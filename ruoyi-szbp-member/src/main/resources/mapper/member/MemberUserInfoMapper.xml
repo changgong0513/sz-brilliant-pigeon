@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.szbp.member.mapper.MemberUserInfoMapper">
+    
+    <resultMap type="MemberUserInfo" id="MemberUserInfoResult">
+        <result property="id"    column="id"    />
+        <result property="userName"    column="user_name"    />
+        <result property="memberId"    column="member_id"    />
+        <result property="userMobile"    column="user_mobile"    />
+        <result property="affiliationAssociationId"    column="affiliation_association_id"    />
+        <result property="affiliationAssociationName"    column="affiliation_association_name"    />
+        <result property="featherNumber"    column="feather_number"    />
+        <result property="proxyName"    column="proxy_name"    />
+        <result property="proxyMobile"    column="proxy_mobile"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectMemberUserInfoVo">
+        select id, user_name, member_id, user_mobile, affiliation_association_id, affiliation_association_name, feather_number, proxy_name, proxy_mobile, create_time, update_time from member_user_info
+    </sql>
+
+    <select id="selectMemberUserInfoList" parameterType="MemberUserInfo" resultMap="MemberUserInfoResult">
+        <include refid="selectMemberUserInfoVo"/>
+        <where>  
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="memberId != null  and memberId != ''"> and member_id = #{memberId}</if>
+            <if test="userMobile != null  and userMobile != ''"> and user_mobile = #{userMobile}</if>
+            <if test="affiliationAssociationId != null "> and affiliation_association_id = #{affiliationAssociationId}</if>
+            <if test="affiliationAssociationName != null  and affiliationAssociationName != ''"> and affiliation_association_name like concat('%', #{affiliationAssociationName}, '%')</if>
+            <if test="featherNumber != null "> and feather_number = #{featherNumber}</if>
+            <if test="proxyName != null  and proxyName != ''"> and proxy_name like concat('%', #{proxyName}, '%')</if>
+            <if test="proxyMobile != null  and proxyMobile != ''"> and proxy_mobile = #{proxyMobile}</if>
+        </where>
+    </select>
+    
+    <select id="selectMemberUserInfoById" parameterType="Long" resultMap="MemberUserInfoResult">
+        <include refid="selectMemberUserInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertMemberUserInfo" parameterType="MemberUserInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into member_user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null and userName != ''">user_name,</if>
+            <if test="memberId != null and memberId != ''">member_id,</if>
+            <if test="userMobile != null and userMobile != ''">user_mobile,</if>
+            <if test="affiliationAssociationId != null">affiliation_association_id,</if>
+            <if test="affiliationAssociationName != null and affiliationAssociationName != ''">affiliation_association_name,</if>
+            <if test="featherNumber != null">feather_number,</if>
+            <if test="proxyName != null">proxy_name,</if>
+            <if test="proxyMobile != null">proxy_mobile,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userName != null and userName != ''">#{userName},</if>
+            <if test="memberId != null and memberId != ''">#{memberId},</if>
+            <if test="userMobile != null and userMobile != ''">#{userMobile},</if>
+            <if test="affiliationAssociationId != null">#{affiliationAssociationId},</if>
+            <if test="affiliationAssociationName != null and affiliationAssociationName != ''">#{affiliationAssociationName},</if>
+            <if test="featherNumber != null">#{featherNumber},</if>
+            <if test="proxyName != null">#{proxyName},</if>
+            <if test="proxyMobile != null">#{proxyMobile},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMemberUserInfo" parameterType="MemberUserInfo">
+        update member_user_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userName != null and userName != ''">user_name = #{userName},</if>
+            <if test="memberId != null and memberId != ''">member_id = #{memberId},</if>
+            <if test="userMobile != null and userMobile != ''">user_mobile = #{userMobile},</if>
+            <if test="affiliationAssociationId != null">affiliation_association_id = #{affiliationAssociationId},</if>
+            <if test="affiliationAssociationName != null and affiliationAssociationName != ''">affiliation_association_name = #{affiliationAssociationName},</if>
+            <if test="featherNumber != null">feather_number = #{featherNumber},</if>
+            <if test="proxyName != null">proxy_name = #{proxyName},</if>
+            <if test="proxyMobile != null">proxy_mobile = #{proxyMobile},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMemberUserInfoById" parameterType="Long">
+        delete from member_user_info where id = #{id}
+    </delete>
+
+    <delete id="deleteMemberUserInfoByIds" parameterType="String">
+        delete from member_user_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
