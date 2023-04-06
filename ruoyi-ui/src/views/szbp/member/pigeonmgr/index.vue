@@ -89,10 +89,12 @@
 
     <el-table v-loading="loading" :data="pigeonmgrList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="编号" align="center" prop="id" />
       <el-table-column label="会员编号" align="center" prop="memberId" />
       <el-table-column label="会员姓名" align="center" prop="memberName" />
+      <el-table-column label="隶属协会" align="center" prop="affiliationAssociationName" />
+      <el-table-column label="会员电话" align="center" prop="userMobile" />
       <el-table-column label="赛鸽足环" align="center" prop="toeRing" />
+      <el-table-column label="代理人" align="center" prop="proxyName" />
       <el-table-column label="赛鸽羽色" align="center" prop="featherColor">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.member_pigeon_feather_color" :value="scope.row.featherColor"/>
@@ -197,20 +199,20 @@ export default {
       // 表单校验
       rules: {
         memberId: [
-          { required: true, message: "会员编号不能为空", trigger: "blur" }
+          { required: true, message: "会员编号不能为空", trigger: "blur" },
+          { pattern: /^[A-Za-z0-9]+$/, message: "会员编号只能包含数字和英文字母", trigger: "blur" }
         ],
         memberName: [
-          { required: true, message: "会员姓名不能为空", trigger: "blur" }
+          { required: true, message: "会员姓名不能为空", trigger: "blur" },
+          { pattern: /[^%&',;=?$\x22]+/, message: "用户名包含^%&',;=?$\" 等特殊字符，请重新输入", trigger: "blur" }
         ],
         toeRing: [
-          { required: true, message: "赛鸽足环不能为空", trigger: "blur" }
+          { required: true, message: "赛鸽足环不能为空", trigger: "blur" },
+          { pattern: /^[A-Za-z0-9]+$/, message: "赛鸽足环只能包含数字和英文字母", trigger: "blur" }
         ],
         featherColor: [
           { required: true, message: "赛鸽羽色不能为空", trigger: "change" }
-        ],
-        createTime: [
-          { required: true, message: "创建时间不能为空", trigger: "blur" }
-        ],
+        ]
       }
     };
   },
