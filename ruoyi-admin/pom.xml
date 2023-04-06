@@ -67,6 +67,12 @@
             <artifactId>ruoyi-szbp-member</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-szbp-member</artifactId>
+            <version>3.8.5</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
