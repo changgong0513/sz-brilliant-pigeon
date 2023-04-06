@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="100px">
       <el-form-item label="用户名" prop="userName">
         <el-input
           v-model="queryParams.userName"
@@ -158,7 +158,7 @@
 
     <!-- 添加或修改会员信息对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="150px">
         <el-form-item label="用户名" prop="userName">
           <el-input v-model="form.userName" placeholder="请输入用户名" />
         </el-form-item>
@@ -175,7 +175,7 @@
           <el-input v-model="form.affiliationAssociationName" placeholder="请输入隶属协会名称" />
         </el-form-item>
         <el-form-item label="交鸽羽数" prop="featherNumber">
-          <el-input v-model="form.featherNumber" placeholder="请输入交鸽羽数" />
+          <el-input v-model.number="form.featherNumber" placeholder="请输入交鸽羽数" />
         </el-form-item>
         <el-form-item label="代理姓名" prop="proxyName">
           <el-input v-model="form.proxyName" placeholder="请输入代理姓名" />
@@ -235,13 +235,17 @@ export default {
       // 表单校验
       rules: {
         userName: [
-          { required: true, message: "用户名不能为空", trigger: "blur" }
+          { required: true, message: "用户名不能为空", trigger: "blur" },
+          { pattern: /[^%&',;=?$\x22]+/, message: "用户名包含^%&',;=?$\" 等特殊字符，请重新输入", trigger: "blur" }
+          
         ],
         memberId: [
-          { required: true, message: "会员编号不能为空", trigger: "blur" }
+          { required: true, message: "会员编号不能为空", trigger: "blur" },
+          { pattern: /^[A-Za-z0-9]+$/, message: "会员编号只能包含数字和英文字母", trigger: "blur" }
         ],
         userMobile: [
-          { required: true, message: "电话不能为空", trigger: "blur" }
+          { required: true, message: "电话不能为空", trigger: "blur" },
+          { pattern: /^1[3|4|5|6|7|8|9][0-9]\d{8}$/, message: "请输入正确的电话号码", trigger: "blur" }
         ],
         affiliationAssociationId: [
           { required: true, message: "隶属协会编号不能为空", trigger: "blur" }
@@ -250,7 +254,8 @@ export default {
           { required: true, message: "隶属协会名称不能为空", trigger: "blur" }
         ],
         featherNumber: [
-          { required: true, message: "交鸽羽数不能为空", trigger: "blur" }
+          { required: true, message: "交鸽羽数不能为空", trigger: "blur" },
+          { type: 'number', message: '交鸽羽数必须为数字值' }
         ],
       }
     };
