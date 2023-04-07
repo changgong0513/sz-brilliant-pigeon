@@ -20,7 +20,7 @@ public class MemberUserInfo extends BaseEntity
 
     /** 用户名 */
     @Excel(name = "用户名")
-    private String userName;
+    private String memberName;
 
     /** 会员编号 */
     @Excel(name = "会员编号")
@@ -28,11 +28,11 @@ public class MemberUserInfo extends BaseEntity
 
     /** 电话 */
     @Excel(name = "电话")
-    private String userMobile;
+    private String memberMobile;
 
     /** 隶属协会编号 */
     @Excel(name = "隶属协会编号")
-    private Long affiliationAssociationId;
+    private String affiliationAssociationId;
 
     /** 隶属协会名称 */
     @Excel(name = "隶属协会名称")
@@ -50,95 +50,85 @@ public class MemberUserInfo extends BaseEntity
     @Excel(name = "代理电话")
     private String proxyMobile;
 
-    public void setId(Long id) 
-    {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getId() 
-    {
-        return id;
-    }
-    public void setUserName(String userName) 
-    {
-        this.userName = userName;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public String getUserName() 
-    {
-        return userName;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
-    public void setMemberId(String memberId) 
-    {
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
         this.memberId = memberId;
     }
 
-    public String getMemberId() 
-    {
-        return memberId;
-    }
-    public void setUserMobile(String userMobile) 
-    {
-        this.userMobile = userMobile;
+    public String getMemberMobile() {
+        return memberMobile;
     }
 
-    public String getUserMobile() 
-    {
-        return userMobile;
+    public void setMemberMobile(String memberMobile) {
+        this.memberMobile = memberMobile;
     }
-    public void setAffiliationAssociationId(Long affiliationAssociationId) 
-    {
+
+    public String getAffiliationAssociationId() {
+        return affiliationAssociationId;
+    }
+
+    public void setAffiliationAssociationId(String affiliationAssociationId) {
         this.affiliationAssociationId = affiliationAssociationId;
     }
 
-    public Long getAffiliationAssociationId() 
-    {
-        return affiliationAssociationId;
+    public String getAffiliationAssociationName() {
+        return affiliationAssociationName;
     }
-    public void setAffiliationAssociationName(String affiliationAssociationName) 
-    {
+
+    public void setAffiliationAssociationName(String affiliationAssociationName) {
         this.affiliationAssociationName = affiliationAssociationName;
     }
 
-    public String getAffiliationAssociationName() 
-    {
-        return affiliationAssociationName;
+    public Long getFeatherNumber() {
+        return featherNumber;
     }
-    public void setFeatherNumber(Long featherNumber) 
-    {
+
+    public void setFeatherNumber(Long featherNumber) {
         this.featherNumber = featherNumber;
     }
 
-    public Long getFeatherNumber() 
-    {
-        return featherNumber;
+    public String getProxyName() {
+        return proxyName;
     }
-    public void setProxyName(String proxyName) 
-    {
+
+    public void setProxyName(String proxyName) {
         this.proxyName = proxyName;
     }
 
-    public String getProxyName() 
-    {
-        return proxyName;
-    }
-    public void setProxyMobile(String proxyMobile) 
-    {
-        this.proxyMobile = proxyMobile;
+    public String getProxyMobile() {
+        return proxyMobile;
     }
 
-    public String getProxyMobile() 
-    {
-        return proxyMobile;
+    public void setProxyMobile(String proxyMobile) {
+        this.proxyMobile = proxyMobile;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id", getId())
-            .append("userName", getUserName())
+            .append("userName", getMemberName())
             .append("memberId", getMemberId())
-            .append("userMobile", getUserMobile())
+            .append("memberMobile", getMemberMobile())
             .append("affiliationAssociationId", getAffiliationAssociationId())
             .append("affiliationAssociationName", getAffiliationAssociationName())
             .append("featherNumber", getFeatherNumber())

@@ -2,6 +2,7 @@ package com.ruoyi.szbp.member.service;
 
 import java.util.List;
 import com.ruoyi.szbp.member.domain.MemberPigeonInfo;
+import com.ruoyi.szbp.member.domain.MemberUserPigeonInfo;
 
 /**
  * 赛鸽管理Service接口
@@ -26,6 +27,14 @@ public interface IMemberPigeonInfoService
      * @return 赛鸽管理集合
      */
     public List<MemberPigeonInfo> selectMemberPigeonInfoList(MemberPigeonInfo memberPigeonInfo);
+
+    /**
+     * 查询用户赛鸽数据列表
+     *
+     * @param memberUserPigeonInfo 用户赛鸽管理
+     * @return 用户赛鸽数据集合
+     */
+    public List<MemberUserPigeonInfo> selectMemberUserPigeonInfoList(MemberUserPigeonInfo memberUserPigeonInfo);
 
     /**
      * 新增赛鸽管理

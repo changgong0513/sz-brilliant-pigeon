@@ -92,7 +92,7 @@
       <el-table-column label="会员编号" align="center" prop="memberId" />
       <el-table-column label="会员姓名" align="center" prop="memberName" />
       <el-table-column label="隶属协会" align="center" prop="affiliationAssociationName" />
-      <el-table-column label="会员电话" align="center" prop="userMobile" />
+      <el-table-column label="会员电话" align="center" prop="memberMobile" />
       <el-table-column label="赛鸽足环" align="center" prop="toeRing" />
       <el-table-column label="代理人" align="center" prop="proxyName" />
       <el-table-column label="赛鸽羽色" align="center" prop="featherColor">
@@ -132,13 +132,13 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="会员编号" prop="memberId">
-          <el-input v-model="form.memberId" placeholder="请输入会员编号" />
+          <el-input v-model="form.memberId" placeholder="请输入会员编号" maxlength="8" show-word-limit />
         </el-form-item>
         <el-form-item label="会员姓名" prop="memberName">
-          <el-input v-model="form.memberName" placeholder="请输入会员姓名" />
+          <el-input v-model="form.memberName" placeholder="请输入会员姓名" maxlength="128" show-word-limit />
         </el-form-item>
         <el-form-item label="赛鸽足环" prop="toeRing">
-          <el-input v-model="form.toeRing" placeholder="请输入赛鸽足环" />
+          <el-input v-model="form.toeRing" placeholder="请输入赛鸽足环" maxlength="18" show-word-limit />
         </el-form-item>
         <el-form-item label="赛鸽羽色" prop="featherColor">
           <el-select v-model="form.featherColor" placeholder="请选择赛鸽羽色">

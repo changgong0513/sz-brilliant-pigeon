@@ -14,8 +14,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateTime"    column="update_time"    />
     </resultMap>
 
+    <resultMap type="MemberUserPigeonInfo" id="MemberUserPigeonInfoResult">
+        <result property="memberId"    column="member_id"    />
+        <result property="memberName"    column="member_name"    />
+        <result property="affiliationAssociationName"    column="affiliation_association_name"    />
+        <result property="memberMobile"    column="member_mobile"    />
+        <result property="proxyName"    column="proxy_name"    />
+        <result property="toeRing"    column="toe_ring"    />
+        <result property="featherColor"    column="feather_color"    />
+    </resultMap>
+
     <sql id="selectMemberPigeonInfoVo">
         select id, member_id, member_name, toe_ring, feather_color, create_time, update_time from member_pigeon_info
+    </sql>
+
+    <sql id="selectMemberUserPigeonInfoVo">
+        select t1.member_id, t1.member_name,t1.affiliation_association_name, t1.member_mobile, t1.proxy_name, t2.toe_ring, t2.feather_color
+        from member_user_info t1, member_pigeon_info t2
+        where t1.member_id = t2.member_id
     </sql>
 
     <select id="selectMemberPigeonInfoList" parameterType="MemberPigeonInfo" resultMap="MemberPigeonInfoResult">
@@ -31,6 +47,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectMemberPigeonInfoById" parameterType="Long" resultMap="MemberPigeonInfoResult">
         <include refid="selectMemberPigeonInfoVo"/>
         where id = #{id}
+    </select>
+
+    <select id="selectMemberUserPigeonInfoList" parameterType="MemberUserPigeonInfo" resultMap="MemberUserPigeonInfoResult">
+        <include refid="selectMemberUserPigeonInfoVo"/>
+        <where>
+            <if test="memberId != null  and memberId != ''"> and member_id = #{memberId}</if>
+            <if test="memberName != null  and memberName != ''"> and member_name like concat('%', #{memberName}, '%')</if>
+            <if test="toeRing != null  and toeRing != ''"> and toe_ring = #{toeRing}</if>
+            <if test="featherColor != null  and featherColor != ''"> and feather_color = #{featherColor}</if>
+        </where>
     </select>
         
     <insert id="insertMemberPigeonInfo" parameterType="MemberPigeonInfo" useGeneratedKeys="true" keyProperty="id">
@@ -76,4 +102,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
+
+
 </mapper>

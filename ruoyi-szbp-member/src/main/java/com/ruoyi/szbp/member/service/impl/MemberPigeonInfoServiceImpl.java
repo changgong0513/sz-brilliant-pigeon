@@ -2,6 +2,7 @@ package com.ruoyi.szbp.member.service.impl;
 
 import java.util.List;
 import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.szbp.member.domain.MemberUserPigeonInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.szbp.member.mapper.MemberPigeonInfoMapper;
@@ -42,6 +43,16 @@ public class MemberPigeonInfoServiceImpl implements IMemberPigeonInfoService
     public List<MemberPigeonInfo> selectMemberPigeonInfoList(MemberPigeonInfo memberPigeonInfo)
     {
         return memberPigeonInfoMapper.selectMemberPigeonInfoList(memberPigeonInfo);
+    }
+
+    /**
+     * 查询用户赛鸽数据列表
+     *
+     * @param memberUserPigeonInfo 用户赛鸽管理
+     * @return 用户赛鸽数据集合
+     */
+    public List<MemberUserPigeonInfo> selectMemberUserPigeonInfoList(MemberUserPigeonInfo memberUserPigeonInfo) {
+        return memberPigeonInfoMapper.selectMemberUserPigeonInfoList(memberUserPigeonInfo);
     }
 
     /**

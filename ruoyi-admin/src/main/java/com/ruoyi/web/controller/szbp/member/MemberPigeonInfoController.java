@@ -3,6 +3,7 @@ package com.ruoyi.web.controller.szbp.member;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ruoyi.szbp.member.domain.MemberUserPigeonInfo;
 import com.ruoyi.szbp.member.service.IMemberPigeonInfoService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +41,9 @@ public class MemberPigeonInfoController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('member:pigeonmgr:list')")
     @GetMapping("/list")
-    public TableDataInfo list(MemberPigeonInfo memberPigeonInfo)
-    {
+    public TableDataInfo list(MemberUserPigeonInfo memberUserPigeonInfo) {
         startPage();
-        List<MemberPigeonInfo> list = memberPigeonInfoService.selectMemberPigeonInfoList(memberPigeonInfo);
+        List<MemberUserPigeonInfo> list = memberPigeonInfoService.selectMemberUserPigeonInfoList(memberUserPigeonInfo);
         return getDataTable(list);
     }
 
