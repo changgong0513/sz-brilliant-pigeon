@@ -9,6 +9,9 @@ public class MemberUserPigeonInfo extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    /** 编号 */
+    private Long id;
+
     /** 会员编号 */
     @Excel(name = "会员编号")
     private String memberId;
@@ -40,6 +43,14 @@ public class MemberUserPigeonInfo extends BaseEntity {
     /** 赛鸽羽色 */
     @Excel(name = "赛鸽羽色")
     private String featherColor;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getMemberId() {
         return memberId;

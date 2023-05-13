@@ -88,7 +88,6 @@
     </el-row>
 
     <el-table v-loading="loading" :data="pigeonmgrList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="会员编号" align="center" prop="memberId" />
       <el-table-column label="会员姓名" align="center" prop="memberName" />
       <el-table-column label="隶属协会" align="center" prop="affiliationAssociationName" />
@@ -259,7 +258,7 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.id)
+      this.ids = selection.map(item => item.memberId)
       this.single = selection.length!==1
       this.multiple = !selection.length
     },

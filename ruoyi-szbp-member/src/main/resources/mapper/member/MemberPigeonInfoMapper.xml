@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <resultMap type="MemberUserPigeonInfo" id="MemberUserPigeonInfoResult">
+        <result property="id"    column="id"    />
         <result property="memberId"    column="member_id"    />
         <result property="memberName"    column="member_name"    />
         <result property="affiliationAssociationName"    column="affiliation_association_name"    />
@@ -29,7 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </sql>
 
     <sql id="selectMemberUserPigeonInfoVo">
-        select t1.member_id, t1.member_name,t1.affiliation_association_name, t1.member_mobile, t1.proxy_name, t2.toe_ring, t2.feather_color
+        select t1.member_id, t1.member_name,t1.affiliation_association_name, t1.member_mobile, t1.proxy_name,
+        t2.id, t2.toe_ring, t2.feather_color
         from member_user_info t1, member_pigeon_info t2
         where t1.member_id = t2.member_id
     </sql>

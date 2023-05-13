@@ -9,9 +9,9 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="用户名" prop="userName">
+      <el-form-item label="用户名" prop="memberName">
         <el-input
-          v-model="queryParams.userName"
+          v-model="queryParams.memberName"
           placeholder="请输入用户名"
           clearable
           @keyup.enter.native="handleQuery"
@@ -25,9 +25,9 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="会员电话" prop="userMobile">
+      <el-form-item label="会员电话" prop="memberMobile">
         <el-input
-          v-model="queryParams.userMobile"
+          v-model="queryParams.memberMobile"
           placeholder="请输入会员电话"
           clearable
           @keyup.enter.native="handleQuery"
@@ -88,9 +88,9 @@
     <el-table v-loading="loading" :data="szbpuserList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="会员编号" align="center" prop="memberId" />
-      <el-table-column label="用户名" align="center" prop="userName" />
+      <el-table-column label="用户名" align="center" prop="memberName" />
       <el-table-column label="隶属协会" align="center" prop="affiliationAssociationName" />
-      <el-table-column label="会员电话" align="center" prop="userMobile" />
+      <el-table-column label="会员电话" align="center" prop="memberMobile" />
       <el-table-column label="交鸽羽数" align="center" prop="featherNumber" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -123,14 +123,14 @@
     <!-- 添加或修改会员信息对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="150px">
-        <el-form-item label="用户名" prop="userName">
-          <el-input v-model="form.userName" placeholder="请输入用户名" maxlength="128" show-word-limit />
+        <el-form-item label="用户名" prop="memberName">
+          <el-input v-model="form.memberName" placeholder="请输入用户名" maxlength="128" show-word-limit />
         </el-form-item>
         <el-form-item label="会员编号" prop="memberId">
           <el-input v-model="form.memberId" placeholder="请输入会员编号" maxlength="8" show-word-limit />
         </el-form-item>
-        <el-form-item label="电话" prop="userMobile">
-          <el-input v-model="form.userMobile" placeholder="请输入电话" maxlength="11" show-word-limit />
+        <el-form-item label="电话" prop="memberMobile">
+          <el-input v-model="form.memberMobile" placeholder="请输入电话" maxlength="11" show-word-limit />
         </el-form-item>
         <el-form-item label="隶属协会编号" prop="affiliationAssociationId">
           <el-input v-model="form.affiliationAssociationId" placeholder="请输入隶属协会编号" maxlength="8" show-word-limit />
@@ -185,9 +185,9 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        userName: null,
+        memberName: null,
         memberId: null,
-        userMobile: null,
+        memberMobile: null,
         affiliationAssociationId: null,
         affiliationAssociationName: null,
         featherNumber: null,
@@ -198,7 +198,7 @@ export default {
       form: {},
       // 表单校验
       rules: {
-        userName: [
+        memberName: [
           { required: true, message: "用户名不能为空", trigger: "blur" },
           { pattern: /[^%&',;=?$\x22]+/, message: "用户名包含^%&',;=?$\" 等特殊字符，请重新输入", trigger: "blur" }
         ],
@@ -206,7 +206,7 @@ export default {
           { required: true, message: "会员编号不能为空", trigger: "blur" },
           { pattern: /^[A-Za-z0-9]+$/, message: "会员编号只能包含数字和英文字母", trigger: "blur" }
         ],
-        userMobile: [
+        memberMobile: [
           { required: true, message: "电话不能为空", trigger: "blur" },
           { pattern: /^1[3|4|5|6|7|8|9][0-9]\d{8}$/, message: "请输入正确的电话号码", trigger: "blur" }
         ],
@@ -251,9 +251,9 @@ export default {
     reset() {
       this.form = {
         id: null,
-        userName: null,
+        memberName: null,
         memberId: null,
-        userMobile: null,
+        memberMobile: null,
         affiliationAssociationId: null,
         affiliationAssociationName: null,
         featherNumber: null,
